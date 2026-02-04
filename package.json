@@ -1,10 +1,10 @@
 {
-  "name": "agent-sandbox",
+  "name": "vibesilo",
   "version": "0.1.0",
   "description": "Run agent CLI commands in a container with egress controls and secret injection",
   "type": "module",
   "bin": {
-    "agent-sandbox": "./dist/cli.js"
+    "vibesilo": "./dist/cli.js"
   },
   "main": "./dist/index.js",
   "exports": {

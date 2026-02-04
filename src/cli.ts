@@ -5,7 +5,7 @@ import { Sandbox } from "./sandbox.js";
 const program = new Command();
 
 program
-  .name("agent-sandbox")
+  .name("vibesilo")
   .description("Run commands in a sandboxed container with secret injection")
   .version("0.1.0");
 

@@ -1,4 +1,4 @@
-# agent-sandbox
+# vibesilo
 
 > ⚠️ **VibeSlopped MVP**: This is a "workable" sandbox prototype for local experimentation.
 > It is **not** a hardened security boundary. Use at your own risk.
@@ -37,7 +37,7 @@ node dist/cli.js run \
 ## CLI usage
 
 ```bash
-agent-sandbox run \
+vibesilo run \
   --image node:20-bookworm \
   --allow api.github.com \
   --secret GH_TOKEN=ghp_xxx@api.github.com \
@@ -47,7 +47,7 @@ agent-sandbox run \
 ## SDK usage
 
 ```ts
-import { Sandbox } from "agent-sandbox";
+import { Sandbox } from "vibesilo";
 
 const sandbox = await Sandbox.create({
   image: "node:20-bookworm",
