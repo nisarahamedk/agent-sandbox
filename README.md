@@ -3,7 +3,7 @@
 > ⚠️ **VibeSlopped MVP**: This is a "workable" sandbox prototype for local experimentation.
 > It is **not** a hardened security boundary. Use at your own risk.
 
-Run agent commands in a Docker container with outbound allow-listing and secret injection via a MITM proxy.
+A local sandbox for LLM agents: run arbitrary CLIs in Docker with outbound allow‑lists and on‑wire secret injection (MITM), so secrets never live in the container.
 
 ## Architecture
 
