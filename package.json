@@ -1,0 +1,28 @@
+{
+  "name": "agent-sandbox",
+  "version": "0.1.0",
+  "description": "Run agent CLI commands in a container with egress controls and secret injection",
+  "type": "module",
+  "bin": {
+    "agent-sandbox": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts --format esm --dts",
+    "dev": "tsx src/cli.ts",
+    "lint": "echo \"(no lint configured)\"",
+    "self-validate": "bash scripts/self-validate.sh"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "tsup": "^8.0.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
