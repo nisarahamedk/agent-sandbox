@@ -49,10 +49,16 @@ vibesilo run \
 
 Create a `vibesilo.json` profile:
 
+```bash
+vibesilo init
+```
+
+Example profile:
+
 ```json
 {
   "image": "node:20-bookworm",
-  "allowNet": ["api.github.com", "auth.openai.com"],
+  "allowNet": ["api.github.com", "auth.openai.com", "api.openai.com"],
   "mounts": [
     { "host": ".", "guest": "/workspace", "readOnly": false },
     { "host": "~/.pi/agent/auth.json", "guest": "/root/.pi/agent/auth.json", "readOnly": true }

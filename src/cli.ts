@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { Sandbox } from "./sandbox.js";
 import type { MountConfig, SandboxProfile, SecretConfig } from "./types.js";
 
@@ -63,6 +63,39 @@ program
     } finally {
       await sandbox.close();
     }
+  });
+
+program
+  .command("init")
+  .description("Create a vibesilo.json profile")
+  .option("-p, --path <path>", "Output path", "vibesilo.json")
+  .option("-i, --image <image>", "Docker image to use", "node:20-bookworm")
+  .option("--no-auth-mount", "Do not mount ~/.pi/agent/auth.json")
+  .option("-f, --force", "Overwrite if the file exists")
+  .action((options) => {
+    const path = options.path as string;
+    if (existsSync(path) && !options.force) {
+      throw new Error(`File already exists: ${path}`);
+    }
+
+    const profile: SandboxProfile = {
+      image: options.image as string,
+      allowNet: ["api.github.com", "auth.openai.com", "api.openai.com"],
+      mounts: [
+        { host: ".", guest: "/workspace", readOnly: false },
+      ],
+    };
+
+    if (options.authMount) {
+      profile.mounts!.push({
+        host: "~/.pi/agent/auth.json",
+        guest: "/root/.pi/agent/auth.json",
+        readOnly: true,
+      });
+    }
+
+    writeFileSync(path, JSON.stringify(profile, null, 2));
+    process.stdout.write(`Wrote ${path}\n`);
   });
 
 program.parse(process.argv);
